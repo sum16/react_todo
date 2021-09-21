@@ -62,7 +62,13 @@ export const App = () => {
         todoText={todoText}
         onChange={onChangeTodoText}
         onClick={onClickAdd}
+        disabled={imcompleteTodos.length >= 5}
       />
+
+      {/* 左がtrueの時に右辺を返す */}
+      {imcompleteTodos.length >= 5 && (
+        <p style={{ color: "red" }}>登録できるtodoは５個までにしてください</p>
+      )}
       {/* propsを渡す  props名は任意　*/}
       <ImcompleteTodos
         todos={imcompleteTodos}
