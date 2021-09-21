@@ -1,5 +1,8 @@
 import "./styles.css";
 import React, { useState } from "react";
+import { InputTodo } from "./components/InputTodo";
+import { ImcompleteTodos } from "./components/ImcompleteTodos";
+import { CompleteTodos } from "./components/CompleteTodos";
 
 export const App = () => {
   const [todoText, setTodoText] = useState("");
@@ -54,57 +57,20 @@ export const App = () => {
 
   return (
     <>
-      <div className="input-area">
-        <input
-          placeholder="todoを入力"
-          value={todoText}
-          onChange={onChangeTodoText}
-        />
-        <button onClick={onClickAdd}>追加</button>
-      </div>
+      {/* propsを渡す  props名は任意　*/}
+      <InputTodo
+        todoText={todoText}
+        onChange={onChangeTodoText}
+        onClick={onClickAdd}
+      />
+      {/* propsを渡す  props名は任意　*/}
+      <ImcompleteTodos
+        todos={imcompleteTodos}
+        onClickComplete={onClickComplete}
+        onClickDelete={onClickDelete}
+      />
 
-      <div className="incomplete-task-area">
-        <p className="title">未完了タスク</p>
-        <ul>
-          {imcompleteTodos.map((todo, index) => {
-            return (
-              // 仮想DOMで差分のみを抽出しているため、配列で回す際はkeyを明示する必要がある
-              <div key={todo} className="list-row">
-                <li>{todo}</li>
-                <button
-                  onClick={() => {
-                    onClickComplete(index);
-                  }}
-                >
-                  完了
-                </button>
-                {/* 関数に引数を渡したいときはアロー関数を使って引数を渡す */}
-                <button onClick={() => onClickDelete(index)}>削除</button>
-              </div>
-            );
-          })}
-        </ul>
-      </div>
-
-      <div className="complete-task-area">
-        <p className="title">完了タスク</p>
-        <ul>
-          {completeTodos.map((todo, index) => {
-            return (
-              <div key={todo} className="list-row">
-                <li>{todo}</li>
-                <button
-                  onClick={() => {
-                    onClickBuck(index);
-                  }}
-                >
-                  戻す
-                </button>
-              </div>
-            );
-          })}
-        </ul>
-      </div>
+      <CompleteTodos todos={completeTodos} onClickBuck={onClickBuck} />
     </>
   );
 };
