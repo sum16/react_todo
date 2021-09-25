@@ -5,6 +5,8 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "@fvilers/disable-react-devtools": "1.2.1",
+    "disable-react-devtools": "1.0.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-scripts": "4.0.0"
