@@ -9,6 +9,7 @@ export const ImcompleteTodos = (props) => {
       <ul>
         {todos.map((todo, index) => {
           return (
+            // indexに配列のindex番号をとれる
             // 仮想DOMで差分のみを抽出しているため、配列で回す際はkeyを明示する必要がある
             <div key={todo} className="list-row">
               <li>{todo}</li>
